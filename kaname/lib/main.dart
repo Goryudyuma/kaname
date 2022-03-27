@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:kaname/qr.dart';
 import 'package:otp/otp.dart';
 
 void main() {
@@ -26,7 +27,33 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Home Route'),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/about');
+              },
+              backgroundColor: Colors.green,
+              child: const Icon(Icons.add),
+            ),
+          );
+        },
+        '/about': (BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('About Route'),
+            ),
+          );
+        },
+        '/qr': (BuildContext context) {
+          return const QRCodeReader();
+        },
+      },
     );
   }
 }
